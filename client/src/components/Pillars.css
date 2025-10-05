@@ -1,0 +1,24 @@
+.section-pillars {
+    padding: 6rem 0;
+    background-color: var(--color-white);
+}
+.pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    text-align: center;
+}
+.pillar-card {
+    padding: 2rem;
+}
+.pillar-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .pillars-grid {
+        grid-template-columns: 1fr;
+    }
+}

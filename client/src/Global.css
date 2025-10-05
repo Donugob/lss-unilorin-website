@@ -1,0 +1,89 @@
+/* ---
+   DESIGN SYSTEM & GLOBAL STYLES (Global.css)
+--- */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Source+Sans+Pro:wght@400;600;700&display=swap');
+
+:root {
+    --color-primary: #1D2D44; /* Deeper Navy */
+    --color-secondary: #F0EAD6; /* Parchment/Off-white */
+    --color-accent: #C9B47F; /* Sophisticated Gold */
+    --color-text: #34495E; /* Soft Black */
+    --color-white: #FFFFFF;
+    
+    --font-heading: 'Merriweather', serif;
+    --font-body: 'Source Sans Pro', sans-serif;
+    
+    --container-width: 1200px;
+    --border-radius: 5px;
+    --transition-speed: 0.3s;
+}
+
+/* Base & Typography */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 16px; scroll-behavior: smooth; }
+
+body {
+    font-family: var(--font-body);
+    color: var(--color-text);
+    background-color: var(--color-white);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.container { 
+    width: 90%; 
+    max-width: var(--container-width); 
+    margin-left: auto; 
+    margin-right: auto; 
+}
+
+h1, h2, h3, h4 { 
+    font-family: var(--font-heading); 
+    color: var(--color-primary); 
+    line-height: 1.2; 
+}
+
+/* Reusable Button Component Styles */
+.btn {
+    display: inline-block;
+    padding: 12px 28px;
+    font-weight: 700;
+    font-family: var(--font-body);
+    border-radius: var(--border-radius);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: transform var(--transition-speed) ease, background-color var(--transition-speed) ease;
+    border: 2px solid transparent;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn:hover { 
+    transform: translateY(-3px); 
+}
+
+.btn-primary { 
+    background-color: var(--color-accent); 
+    color: var(--color-primary); 
+}
+
+.btn-secondary { 
+    background-color: var(--color-primary); 
+    color: var(--color-white); 
+}
+
+.btn-outline { 
+    border-color: var(--color-accent); 
+    color: var(--color-primary); 
+    font-weight: 600; 
+}
+
+.btn-outline:hover { 
+    background-color: var(--color-accent); 
+}
+
+.no-scroll {
+    overflow: hidden;
+}

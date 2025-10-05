@@ -1,0 +1,177 @@
+/* --- Definitive & Exceptional ContactPage.css --- */
+
+.contact-page-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 80px); /* Full viewport height minus header */
+    padding: 4rem 1rem;
+    background-color: #f1f5f9; /* A soft, modern grey */
+}
+
+.contact-card {
+    width: 100%;
+    max-width: 1100px;
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* Asymmetrical split */
+    background-color: var(--color-primary);
+    border-radius: 15px; /* Softer radius */
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* --- The "Info Pillar" (Left Side) --- */
+.contact-info-panel {
+    padding: 3rem;
+    color: var(--color-white);
+}
+
+.contact-info-panel h2 {
+    font-size: 2.5rem;
+    color: var(--color-white);
+    margin-bottom: 1rem;
+}
+
+.contact-info-panel p {
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.7;
+    margin-bottom: 3rem;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.info-icon {
+    font-size: 1.5rem; /* This now controls the size of the SVG icon */
+    flex-shrink: 0; /* Prevents the icon from shrinking if the text is long */
+}
+
+
+.info-item a {
+    color: var(--color-white);
+    text-decoration: none;
+    font-weight: 600;
+    position: relative;
+}
+
+.info-item a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-accent);
+    transition: width 0.3s ease;
+}
+
+.info-item a:hover::after {
+    width: 100%;
+}
+
+.social-media-links {
+    margin-top: 3rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.social-button {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--color-white);
+    padding: 10px 20px;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    
+    /* New styles for aligning icon and text */
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.social-button:hover {
+    background: var(--color-accent);
+    color: var(--color-primary);
+    border-color: var(--color-accent);
+}
+
+/* --- The "Action Panel" with Floating Labels (Right Side) --- */
+.contact-form-panel {
+    background-color: var(--color-white);
+    padding: 3rem;
+}
+
+.form-group.floating {
+    position: relative;
+    margin-bottom: 2.5rem;
+}
+
+.form-group.floating input,
+.form-group.floating textarea {
+    width: 100%;
+    padding: 15px 10px;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    background: transparent;
+    font-size: 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+.form-group.floating label {
+    position: absolute;
+    top: 15px;
+    left: 10px;
+    color: #999;
+    transition: all 0.2s ease-out;
+    z-index: 0;
+    pointer-events: none; /* Allow clicks to pass through to the input */
+}
+
+/* THE MAGIC: When input is focused or not empty, move the label up */
+.form-group.floating input:focus + label,
+.form-group.floating input:not(:placeholder-shown) + label,
+.form-group.floating textarea:focus + label,
+.form-group.floating textarea:not(:placeholder-shown) + label {
+    top: -15px;
+    left: 0;
+    font-size: 0.8rem;
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+.form-group.floating input:focus,
+.form-group.floating textarea:focus {
+    outline: none;
+    border-bottom-color: var(--color-primary);
+}
+
+.contact-form-panel .btn {
+    width: 100%;
+    padding: 15px;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 992px) {
+    .contact-card {
+        grid-template-columns: 1fr; /* Stack the columns */
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-page-wrapper {
+        padding: 2rem 1rem;
+    }
+    .contact-info-panel, .contact-form-panel {
+        padding: 2rem;
+    }
+    .contact-info-panel h2 {
+        font-size: 2rem;
+    }
+}

@@ -1,0 +1,47 @@
+.hero {
+    position: relative;
+    height: 90vh;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    color: var(--color-white);
+    text-align: center;
+}
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-primary);
+    /* In a real project, you would add a background image here */
+    background-image: linear-gradient(rgba(29, 45, 68, 0.85), rgba(29, 45, 68, 0.85)), url('https://i.postimg.cc/SQTVn92z/Whats-App-Image-2025-10-04-at-07-25-48-8257343e.jpg');
+    background-size: cover;
+    background-position: center;
+}
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.hero-title {
+    font-size: 3.5rem;
+    color: var(--color-white);
+    margin-bottom: 1rem;
+}
+.hero-subtitle {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 2rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+}

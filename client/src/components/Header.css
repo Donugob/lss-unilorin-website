@@ -1,0 +1,209 @@
+/* --- Definitive & Revised Header.css --- */
+
+.site-header {
+    background: var(--color-white);
+    border-bottom: 1px solid #e0e0e0;
+    padding: 0 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+}
+
+/* --- REVISED LOGO STYLES --- */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem; /* Space between image and text */
+    text-decoration: none;
+    z-index: 1001;
+}
+
+.logo img {
+    height: 50px; /* Control the size of the crest */
+    width: auto;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.logo-text span:first-child {
+    font-family: 'Merriweather', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+.logo-text span:last-child {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--color-text);
+    letter-spacing: 0.5px;
+}
+/* --- END OF REVISED LOGO STYLES --- */
+
+
+/* --- Mobile First: Navigation Styles --- */
+.desktop-nav {
+    display: none;
+}
+
+.hamburger-button {
+    position: fixed;
+    top: 24px;
+    right: 1rem;
+    z-index: 1002;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.hamburger-icon {
+    width: 28px;
+    height: 22px;
+    position: relative;
+    transform: rotate(0deg);
+    transition: .5s ease-in-out;
+}
+
+.hamburger-icon span {
+    display: block;
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    background: var(--color-primary);
+    border-radius: 9px;
+    opacity: 1;
+    left: 0;
+    transform: rotate(0deg);
+    transition: .25s ease-in-out;
+}
+
+.hamburger-icon.open span {
+    background: var(--color-white);
+}
+
+.hamburger-icon span:nth-child(1) { top: 0px; }
+.hamburger-icon span:nth-child(2) { top: 9px; }
+.hamburger-icon span:nth-child(3) { top: 18px; }
+
+.hamburger-icon.open span:nth-child(1) { top: 9px; transform: rotate(135deg); }
+.hamburger-icon.open span:nth-child(2) { opacity: 0; left: -60px; }
+.hamburger-icon.open span:nth-child(3) { top: 9px; transform: rotate(-135deg); }
+
+
+/* --- Mobile Menu Overlay --- */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    background: var(--color-primary);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.mobile-nav-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
+}
+
+.mobile-nav-links a {
+    font-family: 'Merriweather', serif;
+    font-size: 2rem;
+    color: var(--color-white);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.mobile-nav-links a:hover,
+.mobile-nav-links a.active {
+    color: var(--color-accent);
+}
+
+.mobile-user-section {
+    margin-top: 4rem;
+    text-align: center;
+}
+
+.user-greeting {
+    display: block;
+    color: var(--color-secondary);
+    margin-bottom: 1rem;
+}
+
+.logout-button {
+    background: transparent;
+    border: 2px solid var(--color-accent);
+    color: var(--color-accent);
+    padding: 10px 24px;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.logout-button:hover {
+    background: var(--color-accent);
+    color: var(--color-primary);
+}
+
+
+/* --- Desktop Styles (Media Query) --- */
+@media (min-width: 769px) {
+    .hamburger-button {
+        display: none;
+    }
+    
+    .desktop-nav {
+        display: flex;
+        align-items: center;
+        gap: 2.5rem;
+    }
+
+    .desktop-nav a {
+        font-weight: 600;
+        color: var(--color-text);
+        text-decoration: none;
+        padding-bottom: 5px;
+        position: relative;
+    }
+
+    .desktop-nav a::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--color-accent);
+        transition: width 0.3s ease;
+    }
+
+    .desktop-nav a:hover::after,
+    .desktop-nav a.active::after {
+        width: 100%;
+    }
+    
+    .desktop-nav a.active {
+        color: var(--color-primary);
+    }
+}

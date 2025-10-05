@@ -1,0 +1,118 @@
+/* --- Definitive & Exceptional CtaSection.css --- */
+
+.cta-section-reimagined {
+    position: relative;
+    padding: 8rem 0;
+    background-color: #f8f9fa; /* A light background to contrast with the dark slant */
+    overflow: hidden; /* Important for containing the pseudo-elements */
+}
+
+/* This pseudo-element creates the dark, slanted background */
+.cta-section-reimagined::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-primary);
+    transform: skewY(-3deg); /* The angle of the slant */
+    z-index: 1;
+}
+
+/* This adds a subtle texture over the dark background */
+.cta-section-reimagined::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="%23ffffff" fill-opacity="0.04"><path d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/></g></g></svg>');
+    z-index: 2;
+}
+
+.cta-container {
+    position: relative;
+    z-index: 3; /* Ensure content is on top of the backgrounds */
+}
+
+.cta-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* Asymmetrical layout */
+    align-items: center;
+    gap: 3rem;
+}
+
+.cta-text h2 {
+    font-family: 'Merriweather', serif;
+    font-size: 2.8rem;
+    color: var(--color-white);
+    line-height: 1.3;
+    margin-bottom: 1rem;
+}
+
+.cta-text p {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 550px;
+    line-height: 1.7;
+}
+
+.cta-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+}
+
+/* A new button style for light text on a dark background */
+.btn.btn-outline-light {
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    color: var(--color-white);
+    padding: 12px 28px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.btn.btn-outline-light:hover {
+    background-color: var(--color-white);
+    color: var(--color-primary);
+    border-color: var(--color-white);
+    transform: translateY(-3px);
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 992px) {
+    .cta-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .cta-text p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .cta-actions {
+        flex-direction: row; /* Side-by-side on mobile for better space usage */
+        justify-content: center;
+        width: 100%;
+        margin-top: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .cta-text h2 {
+        font-size: 2.2rem;
+    }
+    .cta-actions {
+        flex-direction: column; /* Stack buttons on very small screens */
+        align-items: center;
+    }
+    .cta-actions .btn {
+        width: 100%;
+        max-width: 300px;
+    }
+}

@@ -1,0 +1,59 @@
+.featured-execs-section {
+    padding: 6rem 0;
+    background-color: #f8f9fa; /* Use a light background to stand out */
+}
+
+.featured-execs-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2.5rem;
+    margin-top: 3rem;
+}
+
+.featured-exec-card {
+    text-align: center;
+    max-width: 300px;
+}
+
+.featured-exec-image-wrapper {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 1.5rem auto;
+    border: 6px solid var(--color-white);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.featured-exec-card:hover .featured-exec-image-wrapper {
+    transform: scale(1.05);
+}
+
+.featured-exec-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.featured-exec-name {
+    font-size: 1.75rem;
+    color: var(--color-primary);
+    margin-bottom: 0.25rem;
+}
+
+.featured-exec-position {
+    font-size: 1rem;
+    color: var(--color-text);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+
+/* --- Add this to the bottom of FeaturedExecutives.css --- */
+
+.see-all-container {
+    text-align: center;
+    margin-top: 3rem; /* Add space above the button */
+}

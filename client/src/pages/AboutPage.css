@@ -1,0 +1,140 @@
+.about-hero-motto {
+    background-color: var(--color-primary);
+    padding: 8rem 1rem;
+    text-align: center;
+    position: relative;
+    color: white;
+}
+
+/* This pseudo-element creates the elegant curve */
+.about-hero-motto::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; /* Hide jagged edges */
+    left: 0;
+    width: 100%;
+    height: 100px; /* Controls the size of the curve */
+    background: var(--color-white);
+    clip-path: ellipse(50% 100% at 50% 100%);
+}
+
+.about-motto-latin {
+    font-family: 'Merriweather', serif;
+    font-size: 3.8rem;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--color-white);
+    margin: 0;
+}
+
+.decorative-line {
+    display: block;
+    width: 80px;
+    height: 3px;
+    background: var(--color-accent);
+    margin: 2rem auto;
+}
+
+.about-motto-translation {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.85);
+    max-width: 550px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+
+/* --- ACT II: THE STORY (Overlapping) --- */
+.about-story-section {
+    background: var(--color-white);
+    padding: 6rem 0;
+    /* This negative margin pulls the section UP, creating the overlap */
+    margin-top: -100px; 
+    position: relative;
+    z-index: 2; /* Ensures it sits on top of the motto's curve */
+}
+
+.about-story-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4rem;
+    align-items: center;
+}
+
+.story-image-container {
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.story-image-container img {
+    width: 100%;
+    display: block;
+}
+
+.story-title {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+}
+
+.story-text-content {
+    font-size: 1.1rem;
+    line-height: 1.9;
+}
+
+/* Drop cap for a classic feel */
+.drop-cap {
+    font-size: 4.5rem;
+    font-family: 'Merriweather', serif;
+    font-weight: 700;
+    color: var(--color-primary);
+    float: left;
+    line-height: 0.8;
+    margin-right: 1rem;
+    margin-top: 0.5rem;
+}
+
+/* Pull quote style */
+.story-text-content blockquote {
+    border-left: 4px solid var(--color-accent);
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+    font-size: 1.4rem;
+    font-style: italic;
+    color: #333;
+    font-weight: 600;
+}
+
+
+/* --- ACT III: THE PEOPLE --- */
+/* We'll add some styles here to make sure the Executives section fits the new design */
+.about-page-wrapper .section-executives {
+    background-color: #f8f9fa;
+    border-top: 1px solid #e0e0e0;
+}
+
+.about-page-wrapper .section-executives .section-title {
+    font-size: 3rem;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 992px) {
+    .about-story-grid {
+        grid-template-columns: 1fr; /* Stack on smaller screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .about-motto-latin {
+        font-size: 2.2rem;
+    }
+    .story-title, .about-page-wrapper .section-executives .section-title {
+        font-size: 2.2rem;
+    }
+    .about-hero-motto::after {
+        height: 50px;
+    }
+    .about-story-section {
+        margin-top: -50px;
+    }
+}
