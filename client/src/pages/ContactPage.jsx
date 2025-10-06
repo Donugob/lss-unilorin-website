@@ -56,7 +56,7 @@ const ContactPage = () => {
                     {/* 2. Replace emojis with the imported icon components */}
                     <div className="info-item">
                         <FiMail className="info-icon" />
-                        <a href="mailto:lawstudentsociety@gmail.com">lawstudentsociety@gmail.com</a>
+                        <a href="mailto:lawstudentssocietyunilawrin@gmail.com">lawstudentssocietyunilawrin@gmail.com</a>
                     </div>
                     <div className="info-item">
                         <FiPhone className="info-icon" />

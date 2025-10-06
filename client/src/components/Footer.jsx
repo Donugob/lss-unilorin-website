@@ -40,7 +40,7 @@ const Footer = () => {
             <ul>
               <li className="contact-item">
                 <FiMail />
-                <a href="mailto:lawstudentsociety@gmail.com">lawstudentsociety@gmail.com</a>
+                <a href="mailto:lawstudentssocietyunilawrin@gmail.com">lawstudentssocietyunilawrin@gmail.com</a>
               </li>
               {/* You could add more contact info here if needed */}
             </ul>
