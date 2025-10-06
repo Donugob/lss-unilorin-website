@@ -1,0 +1,13 @@
+# Ignore any file named .env in any folder
+**/.env
+
+# Node modules
+node_modules/
+/server/node_modules/
+/client/node_modules/
+
+# Build folders
+/client/dist/
+
+# Log files
+npm-debug.log*
