@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { getPostByIdAdmin, createPost, updatePost, uploadImage } from '../services/api';
+import { getPostByIdAdmin, createPost, updatePost, uploadFile } from '../services/api';
 import { Editor } from '@tinymce/tinymce-react'; // 1. Import the TinyMCE Editor
 import './Admin.css';
 
@@ -45,7 +45,7 @@ const AdminPostEditPage = () => {
         formData.append('image', file);
         setUploading(true);
         try {
-            const { data } = await uploadImage(formData);
+            const { data } = await uploadFile(formData);
             setCoverImageUrl(data.imageUrl);
             toast.success('Image uploaded!');
         } catch (error) { toast.error('Image upload failed.'); }

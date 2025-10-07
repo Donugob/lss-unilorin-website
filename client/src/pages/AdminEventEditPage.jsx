@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { getEventById, createEvent, updateEvent, uploadImage } from '../services/api';
+import { getEventById, createEvent, updateEvent, uploadFile } from '../services/api';
 import './Admin.css';
 
 const AdminEventEditPage = () => {
@@ -61,7 +61,7 @@ const AdminEventEditPage = () => {
 
         setUploading(true);
         try {
-            const { data } = await uploadImage(formData);
+            const { data } = await uploadFile(formData);
             setImageUrl(data.imageUrl);
             toast.success('Image uploaded successfully!');
         } catch (error) {

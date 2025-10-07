@@ -7,54 +7,67 @@ const api = axios.create({
 });
 
 // --- Interceptor to add the Auth Token to every request ---
-// This is a powerful Axios feature. It runs before every request is sent.
 api.interceptors.request.use((config) => {
-    // Get user info from localStorage
-    const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-
-    if (userInfo && userInfo.token) {
-        // If the token exists, add it to the Authorization header
-        config.headers.Authorization = `Bearer ${userInfo.token}`;
+    try {
+        const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+        if (userInfo && userInfo.token) {
+            config.headers.Authorization = `Bearer ${userInfo.token}`;
+        }
+    } catch (error) {
+        console.error("Could not parse user info from localStorage", error);
     }
-
     return config;
 }, (error) => {
     return Promise.reject(error);
 });
 
-export const uploadImage = (formData) => api.post('/upload', formData, {
-    headers: {
-        'Content-Type': 'multipart/form-data',
-    },
+// --- Global ---
+export const uploadFile = (formData) => api.post('/upload', formData, {
+    headers: { 'Content-Type': 'multipart/form-data' },
 });
+export const sendContactMessage = (formData) => api.post('/contact', formData);
+export const getDashboardStats = () => api.get('/dashboard/stats');
 
-// --- EVENT API CALLS ---
-export const getFeaturedEvent = () => api.get('/events/featured');
+
+// --- User / Auth ---
+export const loginUser = (email, password) => api.post('/users/login', { email, password });
+export const registerUser = (userData) => api.post('/users/register', userData);
+
+
+// --- Events ---
 export const getAllEvents = () => api.get('/events');
+export const getFeaturedEvent = () => api.get('/events/featured');
 export const getEventById = (id) => api.get(`/events/${id}`);
 export const createEvent = (eventData) => api.post('/events', eventData);
 export const updateEvent = (id, eventData) => api.put(`/events/${id}`, eventData);
 export const deleteEvent = (id) => api.delete(`/events/${id}`);
+
+
+// --- Posts ---
 export const getPublishedPosts = () => api.get('/posts');
 export const getPostBySlug = (slug) => api.get(`/posts/${slug}`);
-export const sendContactMessage = (formData) => api.post('/contact', formData);
-
-// --- USER API CALLS (We can move these here too for consistency) ---
-export const loginUser = (email, password) => api.post('/users/login', { email, password });
-export const registerUser = (userData) => api.post('/users/register', userData);
-
 export const getAllPostsAdmin = () => api.get('/posts/all');
-export const getPostByIdAdmin = (id) => api.get(`/posts/admin/${id}`); // We need a way to get a single post by ID for editing
+export const getPostByIdAdmin = (id) => api.get(`/posts/admin/${id}`);
 export const createPost = (postData) => api.post('/posts', postData);
 export const updatePost = (id, postData) => api.put(`/posts/${id}`, postData);
 export const deletePost = (id) => api.delete(`/posts/${id}`);
-export const getDashboardStats = () => api.get('/dashboard/stats');
 
-export const getFeaturedExecutive = () => api.get('/executives/featured');
+
+// --- Executives ---
 export const getExecutives = () => api.get('/executives');
+export const getFeaturedExecutive = () => api.get('/executives/featured');
+export const getExecutiveById = (id) => api.get(`/executives/${id}`);
 export const createExecutive = (execData) => api.post('/executives', execData);
 export const updateExecutive = (id, execData) => api.put(`/executives/${id}`, execData);
 export const deleteExecutive = (id) => api.delete(`/executives/${id}`);
-export const getExecutiveById = (id) => api.get(`/executives/${id}`);
+
+
+// --- Materials ---
+export const getAllMaterialsAdmin = () => api.get('/materials/all');
+export const getMaterialById = (id) => api.get(`/materials/${id}`);
+export const createMaterial = (materialData) => api.post('/materials', materialData);
+export const updateMaterial = (id, materialData) => api.put(`/materials/${id}`, materialData);
+export const deleteMaterial = (id) => api.delete(`/materials/${id}`);
+
 
 export default api;

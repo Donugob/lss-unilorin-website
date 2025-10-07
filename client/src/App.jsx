@@ -28,6 +28,8 @@ import AdminPostsListPage from './pages/AdminPostsListPage';
 import AdminPostEditPage from './pages/AdminPostEditPage';
 import AdminExecutivesListPage from './pages/AdminExecutivesListPage';
 import AdminExecutiveEditPage from './pages/AdminExecutiveEditPage';
+import AdminMaterialsListPage from './pages/AdminMaterialsListPage';
+import AdminMaterialEditPage from './pages/AdminMaterialEditPage';
 
 // --- MAIN LAYOUT COMPONENT (UPDATED) ---
 const AppLayout = () => {
@@ -83,6 +85,9 @@ function App() {
              <Route path="/admin/executives" element={<AdminExecutivesListPage />} />
              <Route path="/admin/executive/new" element={<AdminExecutiveEditPage />} />
              <Route path="/admin/executive/:id/edit" element={<AdminExecutiveEditPage />} />
+             <Route path="/admin/materials" element={<AdminMaterialsListPage />} />
+             <Route path="/admin/material/new" element={<AdminMaterialEditPage />} />
+             <Route path="/admin/material/:id/edit" element={<AdminMaterialEditPage />} />
           </Route>
         </Route>
       </Routes>

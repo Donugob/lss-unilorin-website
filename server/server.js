@@ -13,6 +13,7 @@ const postRoutes = require('./routes/postRoutes');
 const executiveRoutes = require('./routes/executiveRoutes');
 const contactRoutes = require('./routes/contactRoutes');
 const dashboardRoutes = require('./routes/dashboardRoutes');
+const materialRoutes = require('./routes/materialRoutes');
 
 const app = express();
 connectDB();
@@ -49,5 +50,6 @@ app.use('/api/posts', postRoutes);
 app.use('/api/executives', executiveRoutes);
 app.use('/api/contact', contactRoutes);
 app.use('/api/dashboard', dashboardRoutes);
+app.use('/api/materials', materialRoutes);
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { getDashboardStats } from '../services/api';
-import { FiCalendar, FiFileText, FiUsers, FiPlus } from 'react-icons/fi';
+// 1. Import the new icon we'll need
+import { FiCalendar, FiFileText, FiUsers, FiBookOpen, FiPlus } from 'react-icons/fi';
 import { motion } from 'framer-motion';
-import './AdminDashboard.css'; // We will create a new, dedicated CSS file
+import './AdminDashboard.css';
 
+// This is a reusable sub-component for the stat cards
 const StatCard = ({ icon, title, value, loading }) => (
     <div className="stat-card">
         <div className="stat-icon">{icon}</div>
@@ -16,6 +18,7 @@ const StatCard = ({ icon, title, value, loading }) => (
     </div>
 );
 
+// This is a reusable sub-component for the management cards
 const ManagementCard = ({ icon, title, description, viewLink, createLink }) => (
     <motion.div className="management-card" whileHover={{ y: -5 }}>
         <div className="card-icon">{icon}</div>
@@ -60,6 +63,8 @@ const AdminDashboardPage = () => {
                     <StatCard icon={<FiCalendar />} title="Total Events" value={stats?.events} loading={loading} />
                     <StatCard icon={<FiFileText />} title="Published Posts" value={stats?.posts} loading={loading} />
                     <StatCard icon={<FiUsers />} title="Executive Profiles" value={stats?.executives} loading={loading} />
+                    {/* 2. Add the new Stat Card for Materials */}
+                    <StatCard icon={<FiBookOpen />} title="Total Materials" value={stats?.materials} loading={loading} />
                 </div>
 
                 {/* --- Management Cards --- */}
@@ -84,6 +89,14 @@ const AdminDashboardPage = () => {
                         description="Update the profiles and roles of the LSS executive council."
                         viewLink="/admin/executives"
                         createLink="/admin/executive/new"
+                    />
+                    {/* 3. Add the new Management Card for Materials */}
+                    <ManagementCard 
+                        icon={<FiBookOpen />}
+                        title="Materials Management"
+                        description="Upload and manage course notes, past questions, and other academic resources."
+                        viewLink="/admin/materials"
+                        createLink="/admin/material/new"
                     />
                 </div>
             </div>
