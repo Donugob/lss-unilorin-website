@@ -1,30 +1,36 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+// 1. We no longer need to import axios directly
+// import axios from 'axios'; 
+import { registerUser } from '../services/api'; // <-- IMPORT the correct function
 import './AuthPage.css';
 
 const RegisterPage = () => {
     const [fullName, setFullName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [loading, setLoading] = useState(false); // 1. Add loading state
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
     const submitHandler = async (e) => {
         e.preventDefault();
-        if (loading) return; // Prevent submission if already loading
+        if (loading) return;
 
-        setLoading(true); // 2. Set loading to true
+        setLoading(true);
         try {
-            await axios.post('http://localhost:5001/api/users/register', { fullName, email, password });
+            // 2. THE FIX: Replace the hardcoded axios.post with our API service function
+            await registerUser({ fullName, email, password });
+            
             toast.success('Registration Successful! Please log in.');
-            navigate('/login');
+            
+            // 3. UX IMPROVEMENT: Navigate to the correct admin login page
+            navigate('/admin/login'); 
         } catch (error) {
             const message = error.response?.data?.message || 'Registration failed.';
             toast.error(message);
         } finally {
-            setLoading(false); // 3. Set loading to false in all cases
+            setLoading(false);
         }
     };
 
@@ -33,7 +39,6 @@ const RegisterPage = () => {
             <div className="auth-card">
                 <h1>Register Admin</h1>
                 <form onSubmit={submitHandler}>
-                    {/* ... form inputs remain the same ... */}
                     <div className="form-group">
                         <label>Full Name</label>
                         <input type="text" value={fullName} onChange={(e) => setFullName(e.target.value)} required />
@@ -46,7 +51,6 @@ const RegisterPage = () => {
                         <label>Password</label>
                         <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
                     </div>
-                    {/* 4. Disable button and change text when loading */}
                     <button type="submit" className="btn btn-primary btn-block" disabled={loading}>
                         {loading ? 'Registering...' : 'Register'}
                     </button>
