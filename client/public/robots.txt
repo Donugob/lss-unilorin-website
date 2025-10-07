@@ -1,0 +1,18 @@
+# ===================================================
+# robots.txt for lssunilawrin.com
+# ===================================================
+
+# This tells all search engine crawlers (like Googlebot, Bingbot, etc.)
+# that the following rules apply to them.
+User-agent: *
+
+# --- IMPORTANT: Disallow Crawling of Private Directories ---
+# This prevents search engines from indexing our admin panel,
+# core logic, and include files, which is crucial for security and SEO.
+Disallow: /admin
+
+
+# --- Sitemap Location ---
+# This is the industry-standard way to tell all crawlers where to find
+# the complete map of our website.
+Sitemap: https://lssunilawrin.com/sitemap.php
