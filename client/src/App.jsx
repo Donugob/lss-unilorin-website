@@ -18,6 +18,7 @@ import SingleEventPage from './pages/SingleEventPage';
 import NewsPage from './pages/NewsPage';
 import SinglePostPage from './pages/SinglePostPage';
 import ContactPage from './pages/ContactPage';
+import MaterialsPage from './pages/MaterialsPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -67,6 +68,7 @@ function App() {
           <Route path="news" an element={<NewsPage />} />
           <Route path="news/:slug" element={<SinglePostPage />} />
           <Route path="contact" element={<ContactPage />} />
+          <Route path="/materials" element={<MaterialsPage />} />
         </Route>
 
         <Route path="/admin/login" element={<LoginPage />} />

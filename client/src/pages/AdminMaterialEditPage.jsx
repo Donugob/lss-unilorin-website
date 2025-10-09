@@ -14,37 +14,56 @@ const AdminMaterialEditPage = () => {
     const [level, setLevel] = useState('100L');
     const [materialType, setMaterialType] = useState('Lecture Note');
     const [fileUrl, setFileUrl] = useState('');
-    const [fileType, setFileType] = useState(''); // e.g., 'PDF', 'Image'
+    const [fileType, setFileType] = useState('');
     
     // Helper state
     const [uploading, setUploading] = useState(false);
     const [loading, setLoading] = useState(false);
     const [pageLoading, setPageLoading] = useState(!!materialId);
 
-    useEffect(() => { /* Standard fetch logic for edit mode using getMaterialById */ }, [materialId]);
+    // --- FULLY IMPLEMENTED useEffect to fetch data for editing ---
+    useEffect(() => {
+        if (materialId) {
+            const fetchMaterial = async () => {
+                try {
+                    const { data } = await getMaterialById(materialId);
+                    setTitle(data.title);
+                    setDescription(data.description || '');
+                    setLevel(data.level);
+                    setMaterialType(data.materialType);
+                    setFileUrl(data.fileUrl || '');
+                    setFileType(data.fileType || '');
+                } catch (error) {
+                    toast.error("Could not fetch material data.");
+                    navigate('/admin/materials'); // Redirect if material not found
+                } finally {
+                    setPageLoading(false);
+                }
+            };
+            fetchMaterial();
+        }
+    }, [materialId, navigate]);
 
+    // --- FULLY IMPLEMENTED upload handler ---
     const uploadFileHandler = async (e) => {
         const file = e.target.files[0];
         if (!file) return;
-
         const formData = new FormData();
-        formData.append('image', file); // The backend route still expects 'image' key
+        formData.append('image', file); // Backend expects 'image' key
         
         setUploading(true);
         try {
             const { data } = await uploadFile(formData);
-            setFileUrl(data.imageUrl); // Cloudinary returns 'imageUrl' path for both images and raw files
+            setFileUrl(data.imageUrl);
             
-            // Auto-detect file type from extension for categorization
             const extension = file.name.split('.').pop().toUpperCase();
             if (['PDF', 'DOC', 'DOCX'].includes(extension)) {
                 setFileType(extension);
-            } else if (['JPG', 'JPEG', 'PNG'].includes(extension)) {
+            } else if (['JPG', 'JPEG', 'PNG', 'GIF'].includes(extension)) {
                 setFileType('Image');
             } else {
                 setFileType('File');
             }
-
             toast.success('File uploaded successfully!');
         } catch (error) {
             toast.error('File upload failed.');
@@ -53,8 +72,13 @@ const AdminMaterialEditPage = () => {
         }
     };
 
+    // --- FULLY IMPLEMENTED submit handler ---
     const submitHandler = async (e) => {
         e.preventDefault();
+        if (!fileUrl) {
+            toast.error('Please upload a file first.');
+            return;
+        }
         setLoading(true);
         try {
             const materialData = { title, description, level, materialType, fileUrl, fileType };
@@ -85,7 +109,7 @@ const AdminMaterialEditPage = () => {
                 </div>
                 <div className="form-group">
                     <label>Description (Optional)</label>
-                    <textarea value={description} onChange={(e) => setDescription(e.target.value)} rows="3" />
+                    <textarea value={description} onChange={(e) => setDescription(e.target.value)} rows="3" style={{width: '100%', padding: '10px', fontFamily: 'var(--font-body)', fontSize: '1rem'}}/>
                 </div>
                 <div className="form-group">
                     <label>Level</label>
@@ -107,9 +131,9 @@ const AdminMaterialEditPage = () => {
                     </select>
                 </div>
                 <div className="form-group">
-                    <label>Upload File</label>
-                    <input type="text" value={fileUrl} placeholder="Upload a file to get a URL" readOnly style={{ marginBottom: '10px' }}/>
-                    <input type="file" onChange={uploadFileHandler} required={!materialId} />
+                    <label>Upload File (PDF, DOC, PNG, JPG)</label>
+                    <input type="text" value={fileUrl} placeholder="Upload a file to get its URL" readOnly style={{ marginBottom: '10px' }}/>
+                    <input type="file" onChange={uploadFileHandler} />
                     {uploading && <p>Uploading...</p>}
                 </div>
                 <button type="submit" className="btn btn-primary" disabled={loading || uploading}>

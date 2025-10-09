@@ -63,6 +63,9 @@ export const deleteExecutive = (id) => api.delete(`/executives/${id}`);
 
 
 // --- Materials ---
+// --- THIS IS THE NEW FUNCTION THAT WAS MISSING ---
+export const getPublicMaterials = (params) => api.get('/materials', { params });
+
 export const getAllMaterialsAdmin = () => api.get('/materials/all');
 export const getMaterialById = (id) => api.get(`/materials/${id}`);
 export const createMaterial = (materialData) => api.post('/materials', materialData);

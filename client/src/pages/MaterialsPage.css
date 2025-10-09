@@ -1,0 +1,168 @@
+/* --- Definitive MaterialsPage.css --- */
+.materials-page-wrapper {
+    padding: 4rem 0;
+    background-color: #f8f9fa;
+    min-height: 80vh;
+}
+
+.materials-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.materials-header .page-title {
+    margin-bottom: 1rem;
+}
+
+.materials-header p {
+    font-size: 1.15rem;
+    color: var(--color-text);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* --- Filter Bar --- */
+.filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    align-items: flex-end;
+    padding: 1.5rem;
+    background-color: var(--color-white);
+    border-radius: var(--border-radius);
+    margin-bottom: 3rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Allows filters to take up available space */
+}
+
+.filter-group label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--color-primary);
+}
+
+.filter-group select {
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-family: var(--font-body);
+    width: 100%;
+}
+
+.clear-filters-btn {
+    background: none;
+    border: none;
+    color: #64748b;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 10px;
+}
+.clear-filters-btn:hover { color: var(--color-primary); }
+
+/* --- Materials Grid --- */
+.materials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.material-card {
+    background: var(--color-white);
+    border: 1px solid #e0e0e0;
+    border-radius: var(--border-radius);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.material-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.card-icon-wrapper {
+    font-size: 2.5rem;
+    padding: 1.5rem;
+    background-color: var(--color-primary);
+    color: var(--color-accent);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+}
+
+.card-content {
+    padding: 1.5rem;
+    flex-grow: 1; /* Pushes download link to the bottom */
+}
+
+.card-meta {
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #777;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-family: 'Merriweather', serif;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+}
+
+.card-description {
+    font-size: 0.9rem;
+    color: #64748b;
+}
+
+.download-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    text-align: center;
+    font-weight: bold;
+    color: var(--color-primary);
+    background-color: #f8f9fa;
+    text-decoration: none;
+    border-top: 1px solid #e0e0e0;
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.download-link:hover {
+    background-color: var(--color-accent);
+    color: var(--color-primary);
+}
+
+/* --- Loading and No Results State --- */
+.loading-container, .no-results-container {
+    text-align: center;
+    padding: 4rem 0;
+    color: #64748b;
+}
+
+.spinner {
+    animation: spin 1.5s linear infinite;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}

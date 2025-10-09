@@ -9,7 +9,6 @@ const AdminMaterialsListPage = () => {
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
 
-    // 1. Fully implemented fetch logic
     const fetchMaterials = async () => {
         setLoading(true);
         try {
@@ -17,33 +16,27 @@ const AdminMaterialsListPage = () => {
             setMaterials(data);
         } catch (error) {
             toast.error('Failed to fetch materials.');
-            console.error("Fetch materials error:", error);
         } finally {
             setLoading(false);
         }
     };
 
-    // This runs once when the component first mounts
     useEffect(() => {
         fetchMaterials();
     }, []);
 
-    // 2. Fully implemented delete logic
     const deleteHandler = async (id) => {
         if (window.confirm('Are you sure you want to delete this material?')) {
             try {
                 await deleteMaterial(id);
                 toast.success('Material deleted successfully');
-                // Refetch the materials list to reflect the deletion
                 fetchMaterials();
             } catch (error) {
                 toast.error('Failed to delete material.');
-                console.error("Delete material error:", error);
             }
         }
     };
-    
-    // Handler to navigate to the creation page
+
     const createMaterialHandler = () => {
         navigate('/admin/material/new');
     };
@@ -72,12 +65,10 @@ const AdminMaterialsListPage = () => {
                     <tbody>
                         {materials.map(material => (
                             <tr key={material._id}>
-                                {/* 3. Added data-label for mobile responsiveness */}
                                 <td data-label="Title">{material.title}</td>
                                 <td data-label="Level">{material.level}</td>
                                 <td data-label="Type">{material.materialType}</td>
                                 <td data-label="Actions">
-                                    {/* 4. Fully implemented Edit and Delete buttons */}
                                     <Link to={`/admin/material/${material._id}/edit`} className="btn btn-outline" style={{ marginRight: '10px' }}>Edit</Link>
                                     <button onClick={() => deleteHandler(material._id)} className="btn btn-secondary">Delete</button>
                                 </td>

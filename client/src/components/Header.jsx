@@ -50,6 +50,7 @@ const Header = () => {
                         <NavLink to="/events">Events</NavLink>
                         <NavLink to="/news">News & Publications</NavLink>
                         <NavLink to="/contact">Contact</NavLink>
+                        <NavLink to="/materials">Materials</NavLink>
                     </nav>
                 </div>
             </header>
@@ -77,6 +78,7 @@ const Header = () => {
                             <NavLink to="/events" onClick={closeMenu}>Events</NavLink>
                             <NavLink to="/news" onClick={closeMenu}>News & Publications</NavLink>
                             <NavLink to="/contact" onClick={closeMenu}>Contact</NavLink>
+                            <NavLink to="/materials" onClick={closeMenu}>Materials</NavLink>
                         </nav>
                         {user && (
                            <div className="mobile-user-section">
