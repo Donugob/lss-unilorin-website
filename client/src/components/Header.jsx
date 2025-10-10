@@ -80,7 +80,7 @@ const Header = () => {
                             <NavLink to="/news" onClick={closeMenu}>News & Publications</NavLink>
                             <NavLink to="/contact" onClick={closeMenu}>Contact</NavLink>
                             <NavLink to="/materials" onClick={closeMenu}>Materials</NavLink>
-                            <NavLink to="/podcast">Law & Vibes Podcast</NavLink>
+                            <NavLink to="/podcast" onClick={closeMenu}>Law & Vibes Podcast</NavLink>
                         </nav>
                         {user && (
                            <div className="mobile-user-section">
