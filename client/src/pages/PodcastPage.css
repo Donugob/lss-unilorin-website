@@ -1,0 +1,27 @@
+/* --- Definitive PodcastPage.css --- */
+.upcoming-episode-hero {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: 6rem 1rem;
+    text-align: center;
+}
+.upcoming-title { font-size: 3.5rem; color: white; margin: 1rem 0; }
+.upcoming-guest { font-size: 1.25rem; color: rgba(255,255,255,0.7); margin-bottom: 2rem; }
+.countdown-timer { display: flex; justify-content: center; gap: 2rem; margin-bottom: 3rem; }
+.countdown-item { display: flex; flex-direction: column; }
+.countdown-value { font-size: 3rem; font-weight: bold; font-family: 'Merriweather', serif; color: var(--color-accent); line-height: 1; }
+.countdown-label { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+.live-now-text { font-size: 2rem; color: var(--color-accent); font-weight: bold; margin-bottom: 2rem; }
+.btn-join { padding: 15px 35px; font-size: 1.1rem; }
+
+.archive-section { padding: 6rem 0; }
+.archive-section.no-upcoming { padding-top: 4rem; }
+.search-bar { position: relative; max-width: 600px; margin: 0 auto 4rem auto; }
+.search-icon { position: absolute; top: 50%; left: 15px; transform: translateY(-50%); color: #999; }
+.search-bar input { width: 100%; padding: 15px 15px 15px 50px; border: 1px solid #ccc; border-radius: 50px; font-size: 1rem; }
+.episode-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2rem; }
+.episode-card { background: white; border: 1px solid #e0e0e0; border-radius: var(--border-radius); padding: 2rem; display: flex; flex-direction: column; }
+.episode-card-header { display: flex; justify-content: space-between; font-size: 0.9rem; color: #777; margin-bottom: 1rem; }
+.episode-title { font-size: 1.5rem; font-family: 'Merriweather', serif; margin-bottom: 1rem; flex-grow: 1; }
+.episode-description { color: var(--color-text); margin-bottom: 2rem; }
+.episode-card .btn { align-self: flex-start; }

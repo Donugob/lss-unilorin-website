@@ -72,5 +72,9 @@ export const createMaterial = (materialData) => api.post('/materials', materialD
 export const updateMaterial = (id, materialData) => api.put(`/materials/${id}`, materialData);
 export const deleteMaterial = (id) => api.delete(`/materials/${id}`);
 
+// --- PODCAST API CALLS ---
+export const getUpcomingEpisode = () => api.get('/podcast/upcoming');
+export const getArchivedEpisodes = () => api.get('/podcast/archived');
+
 
 export default api;

@@ -31,6 +31,7 @@ import AdminExecutivesListPage from './pages/AdminExecutivesListPage';
 import AdminExecutiveEditPage from './pages/AdminExecutiveEditPage';
 import AdminMaterialsListPage from './pages/AdminMaterialsListPage';
 import AdminMaterialEditPage from './pages/AdminMaterialEditPage';
+import PodcastPage from './pages/PodcastPage';
 
 // --- MAIN LAYOUT COMPONENT (UPDATED) ---
 const AppLayout = () => {
@@ -69,6 +70,7 @@ function App() {
           <Route path="news/:slug" element={<SinglePostPage />} />
           <Route path="contact" element={<ContactPage />} />
           <Route path="/materials" element={<MaterialsPage />} />
+          <Route path="/podcast" element={<PodcastPage />} />
         </Route>
 
         <Route path="/admin/login" element={<LoginPage />} />
