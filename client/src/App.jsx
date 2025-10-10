@@ -31,6 +31,8 @@ import AdminExecutivesListPage from './pages/AdminExecutivesListPage';
 import AdminExecutiveEditPage from './pages/AdminExecutiveEditPage';
 import AdminMaterialsListPage from './pages/AdminMaterialsListPage';
 import AdminMaterialEditPage from './pages/AdminMaterialEditPage';
+import AdminPodcastListPage from './pages/AdminPodcastListPage';
+import AdminPodcastEditPage from './pages/AdminPodcastEditPage';
 import PodcastPage from './pages/PodcastPage';
 
 // --- MAIN LAYOUT COMPONENT (UPDATED) ---
@@ -92,6 +94,9 @@ function App() {
              <Route path="/admin/materials" element={<AdminMaterialsListPage />} />
              <Route path="/admin/material/new" element={<AdminMaterialEditPage />} />
              <Route path="/admin/material/:id/edit" element={<AdminMaterialEditPage />} />
+             <Route path="/admin/podcast" element={<AdminPodcastListPage />} />
+             <Route path="/admin/podcast/new" element={<AdminPodcastEditPage />} />
+             <Route path="/admin/podcast/:id/edit" element={<AdminPodcastEditPage />} />
           </Route>
         </Route>
       </Routes>

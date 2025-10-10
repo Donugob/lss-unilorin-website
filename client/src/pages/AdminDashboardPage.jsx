@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { getDashboardStats } from '../services/api';
 // 1. Import the new icon we'll need
-import { FiCalendar, FiFileText, FiUsers, FiBookOpen, FiPlus } from 'react-icons/fi';
+import { FiCalendar, FiFileText, FiHeadphones, FiUsers, FiBookOpen, FiPlus } from 'react-icons/fi';
 import { motion } from 'framer-motion';
 import './AdminDashboard.css';
 
@@ -65,6 +65,7 @@ const AdminDashboardPage = () => {
                     <StatCard icon={<FiUsers />} title="Executive Profiles" value={stats?.executives} loading={loading} />
                     {/* 2. Add the new Stat Card for Materials */}
                     <StatCard icon={<FiBookOpen />} title="Total Materials" value={stats?.materials} loading={loading} />
+                    <StatCard icon={<FiHeadphones />} title="Podcast Episodes" value={stats?.podcasts} loading={loading} />
                 </div>
 
                 {/* --- Management Cards --- */}
@@ -97,6 +98,13 @@ const AdminDashboardPage = () => {
                         description="Upload and manage course notes, past questions, and other academic resources."
                         viewLink="/admin/materials"
                         createLink="/admin/material/new"
+                    />
+                    <ManagementCard 
+                        icon={<FiHeadphones />}
+                        title="Podcast Management"
+                        description="Schedule and manage all 'Law & Vibes' X Spaces episodes."
+                        viewLink="/admin/podcast"
+                        createLink="/admin/podcast/new"
                     />
                 </div>
             </div>

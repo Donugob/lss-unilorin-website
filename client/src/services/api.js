@@ -75,6 +75,11 @@ export const deleteMaterial = (id) => api.delete(`/materials/${id}`);
 // --- PODCAST API CALLS ---
 export const getUpcomingEpisode = () => api.get('/podcast/upcoming');
 export const getArchivedEpisodes = () => api.get('/podcast/archived');
+export const getAllEpisodesAdmin = () => api.get('/podcast/all');
+export const getEpisodeById = (id) => api.get(`/podcast/${id}`);
+export const createEpisode = (episodeData) => api.post('/podcast', episodeData);
+export const updateEpisode = (id, episodeData) => api.put(`/podcast/${id}`, episodeData);
+export const deleteEpisode = (id) => api.delete(`/podcast/${id}`);
 
 
 export default api;

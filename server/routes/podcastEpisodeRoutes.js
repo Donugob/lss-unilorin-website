@@ -4,6 +4,7 @@ const {
     getUpcomingEpisode,
     getArchivedEpisodes,
     getAllEpisodesAdmin,
+    getEpisodeById,
     createEpisode,
     updateEpisode,
     deleteEpisode
@@ -16,8 +17,10 @@ router.get('/archived', getArchivedEpisodes);
 
 // --- Admin Routes ---
 router.get('/all', protect, getAllEpisodesAdmin);
+router.route('/:id')
+    .get(getEpisodeById) // Re-using for admin edit page
+    .put(protect, updateEpisode)
+    .delete(protect, deleteEpisode);
 router.post('/', protect, createEpisode);
-router.put('/:id', protect, updateEpisode);
-router.delete('/:id', protect, deleteEpisode);
 
 module.exports = router;
