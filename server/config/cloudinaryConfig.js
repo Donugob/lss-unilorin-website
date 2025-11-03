@@ -1,43 +1,52 @@
-const cloudinary = require('cloudinary').v2;
-const { CloudinaryStorage } = require('multer-storage-cloudinary');
-const multer = require('multer');
+const cloudinary = require("cloudinary").v2;
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
+const multer = require("multer");
 
 cloudinary.config({
-    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-    api_key: process.env.CLOUDINARY_API_KEY,
-    api_secret: process.env.CLOUDINARY_API_SECRET,
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
 const storage = new CloudinaryStorage({
-    cloudinary: cloudinary,
-    params: (req, file) => {
-        // Determine the resource type and folder based on file type
-        const isImage = ['image/jpeg', 'image/png', 'image/jpg'].includes(file.mimetype);
-        const resourceType = isImage ? 'image' : 'raw'; // 'raw' for PDFs, docs, etc.
-        const folder = isImage ? 'lss-unilorin-images' : 'lss-unilorin-documents';
-        
-        return {
-            folder: folder,
-            resource_type: resourceType,
-            // For raw files, you might want to preserve the original filename
-            public_id: file.originalname.split('.').slice(0, -1).join('_'),
-        };
-    },
-});
+  cloudinary: cloudinary,
+  params: (req, file) => {
+    // --- THIS IS THE KEY LOGIC ---
+    // Check if the request path includes '/public'.
+    const isPublicUpload = req.originalUrl.includes("/public");
 
-const upload = multer({ 
-    storage: storage,
-    fileFilter: function (req, file, cb) {
-        // Define allowed file types
-        const allowedTypes = /jpeg|jpg|png|pdf|doc|docx/;
-        const mimetype = allowedTypes.test(file.mimetype);
-        const extname = allowedTypes.test(file.originalname.toLowerCase());
+    const isImage = [
+      "image/jpeg",
+      "image/png",
+      "image/jpg",
+      "image/gif",
+    ].includes(file.mimetype);
+    let folder;
 
-        if (mimetype && extname) {
-            return cb(null, true);
-        }
-        cb('Error: File type not allowed!');
+    if (isPublicUpload) {
+      folder = "lss-unilorin-submissions"; // Public uploads go here
+    } else {
+      folder = isImage ? "lss-unilorin-assets" : "lss-unilorin-documents"; // Admin uploads go here
     }
+
+    return {
+      folder: folder,
+      resource_type: isImage ? "image" : "raw",
+    };
+  },
 });
 
-module.exports = upload;
+const upload = multer({
+  storage: storage,
+  limits: { fileSize: 1024 * 1024 * 10 }, // 10MB file size limit
+  fileFilter: function (req, file, cb) {
+    const allowedTypes = /jpeg|jpg|png|gif|pdf|doc|docx/;
+    const mimetype = allowedTypes.test(file.mimetype);
+    if (mimetype) {
+      return cb(null, true);
+    }
+    cb(new Error("This file type is not allowed."));
+  },
+});
+
+module.exports = upload; // We only need to export one uploader

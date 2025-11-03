@@ -1,36 +1,63 @@
-const express = require('express');
-const upload = require('../config/cloudinaryConfig');
-const { protect } = require('../middleware/authMiddleware');
+const express = require("express");
+const upload = require("../config/cloudinaryConfig"); // Our single, smart uploader
+const { protect } = require("../middleware/authMiddleware");
 const router = express.Router();
 
-// Here we create a custom middleware function to handle potential multer errors
-const multerUpload = (req, res, next) => {
-    // We use the 'upload.single' middleware inside this function
-    const uploader = upload.single('image');
+// --- 1. Middleware for PUBLIC image submissions ---
+// This specifically looks for a field named 'image'.
+const publicImageUploader = (req, res, next) => {
+  const uploader = upload.single("image");
 
-    uploader(req, res, function (err) {
-        // This function will be called after multer tries to process the upload
-        if (err) {
-            // If multer returns an error (e.g., file type not allowed, file too large)
-            console.error('Multer Error:', err);
-            return res.status(400).json({ message: err.message });
-        }
-        // If everything is fine, move to the next function in the chain
-        next();
-    });
+  uploader(req, res, function (err) {
+    if (err) {
+      console.error("Public Upload Multer Error:", err);
+      return res
+        .status(400)
+        .json({ message: err.message || "File upload error." });
+    }
+    next();
+  });
 };
 
-router.post('/', protect, multerUpload, (req, res) => {
-    // By the time we get here, we know multer has succeeded.
-    if (req.file) {
-        res.status(200).json({
-            message: 'Image uploaded successfully',
-            imageUrl: req.file.path
-        });
-    } else {
-        // This case might happen if no file was part of the request
-        res.status(400).json({ message: 'No file was uploaded.' });
+// --- 2. Middleware for ADMIN file uploads ---
+// This looks for a more generic field named 'file'.
+const adminFileUploader = (req, res, next) => {
+  const uploader = upload.single("file");
+
+  uploader(req, res, function (err) {
+    if (err) {
+      console.error("Admin Upload Multer Error:", err);
+      return res
+        .status(400)
+        .json({ message: err.message || "File upload error." });
     }
+    next();
+  });
+};
+
+// --- 3. The New PUBLIC Route ---
+// This endpoint is NOT protected by the 'protect' middleware.
+// It uses the public uploader.
+router.post("/public", publicImageUploader, (req, res) => {
+  if (req.file) {
+    // For public uploads, we just return the URL.
+    res.status(200).json({ imageUrl: req.file.path });
+  } else {
+    res.status(400).json({ message: "No file was uploaded." });
+  }
+});
+
+// --- 4. The Existing ADMIN Route (Now Updated) ---
+// This endpoint IS protected and uses the admin uploader.
+router.post("/", protect, adminFileUploader, (req, res) => {
+  if (req.file) {
+    res.status(200).json({
+      message: "File uploaded successfully",
+      imageUrl: req.file.path,
+    });
+  } else {
+    res.status(400).json({ message: "No file was uploaded." });
+  }
 });
 
 module.exports = router;

@@ -1,8 +1,8 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { FiMail, FiTwitter, FiLinkedin } from 'react-icons/fi';
-import './Footer.css';
-import lssLogo from '../assets/lss-logo.png'; // Assuming your logo is here
+import React from "react";
+import { Link } from "react-router-dom";
+import { FiMail, FiTwitter, FiLinkedin } from "react-icons/fi";
+import "./Footer.css";
+import lssLogo from "../assets/lss-logo.png"; // Assuming your logo is here
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -27,10 +27,21 @@ const Footer = () => {
           <div className="footer-column">
             <h4>Quick Links</h4>
             <ul>
-              <li><Link to="/about">About Us</Link></li>
-              <li><Link to="/events">Events</Link></li>
-              <li><Link to="/news">News & Publications</Link></li>
-              <li><Link to="/contact">Contact</Link></li>
+              <li>
+                <Link to="/about">About Us</Link>
+              </li>
+              <li>
+                <Link to="/events">Events</Link>
+              </li>
+              <li>
+                <Link to="/news">News & Publications</Link>
+              </li>
+              <li>
+                <Link to="/contact">Contact</Link>
+              </li>
+              <li>
+                <Link to="/submit-article">Write for Us</Link>
+              </li>
             </ul>
           </div>
 
@@ -40,7 +51,9 @@ const Footer = () => {
             <ul>
               <li className="contact-item">
                 <FiMail />
-                <a href="mailto:lawstudentssocietyunilawrin@gmail.com">lawstudentssocietyunilawrin@gmail.com</a>
+                <a href="mailto:lawstudentssocietyunilawrin@gmail.com">
+                  lawstudentssocietyunilawrin@gmail.com
+                </a>
               </li>
               {/* You could add more contact info here if needed */}
             </ul>
@@ -50,17 +63,41 @@ const Footer = () => {
           <div className="footer-column">
             <h4>Follow Us</h4>
             <div className="footer-social-links">
-              <a href="https://x.com/unilawrin_" target="_blank" rel="noopener noreferrer" aria-label="Follow us on X"><FiTwitter /></a>
-              <a href="https://www.linkedin.com/in/law-students-society-unilorin-9601411aa/" target="_blank" rel="noopener noreferrer" aria-label="Follow us on LinkedIn"><FiLinkedin /></a>
+              <a
+                href="https://x.com/unilawrin_"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Follow us on X"
+              >
+                <FiTwitter />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/law-students-society-unilorin-9601411aa/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Follow us on LinkedIn"
+              >
+                <FiLinkedin />
+              </a>
             </div>
           </div>
         </div>
 
         {/* --- Sub-Footer with Copyright and Credit --- */}
         <div className="footer-bottom">
-          <p className="copyright">&copy; {currentYear} Law Students' Society, UNILORIN. All Rights Reserved.</p>
+          <p className="copyright">
+            &copy; {currentYear} Law Students' Society, UNILORIN. All Rights
+            Reserved.
+          </p>
           <p className="credit">
-            Powered by <a href="https://x.com/Don_ugob" target="_blank" rel="noopener noreferrer">BUILD WITH UGO.B</a>
+            Powered by{" "}
+            <a
+              href="https://x.com/Don_ugob"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              BUILD WITH UGO.B
+            </a>
           </p>
         </div>
       </div>
