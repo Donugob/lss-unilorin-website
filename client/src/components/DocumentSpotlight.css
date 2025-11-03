@@ -1,0 +1,46 @@
+.doc-spotlight-card {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  background-color: var(--color-white);
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.doc-icon {
+  font-size: 3rem;
+  color: var(--color-accent);
+  flex-shrink: 0;
+}
+
+.doc-text h3 {
+  font-family: "Merriweather", serif;
+  font-size: 1.5rem;
+  color: var(--color-primary);
+  margin: 0 0 0.5rem 0;
+}
+
+.doc-text p {
+  margin: 0;
+  color: var(--color-text);
+}
+
+.doc-spotlight-card .btn {
+  margin-left: auto; /* Pushes the button to the far right */
+  flex-shrink: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .doc-spotlight-card {
+    flex-direction: column;
+    text-align: center;
+  }
+  .doc-spotlight-card .btn {
+    margin-left: 0;
+    width: 100%;
+    margin-top: 1rem;
+  }
+}
