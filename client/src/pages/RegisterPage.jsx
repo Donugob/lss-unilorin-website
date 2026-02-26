@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 // import axios from 'axios'; 
 import { registerUser } from '../services/api'; // <-- IMPORT the correct function
 import './AuthPage.css';
+import SEO from '../components/SEO';
 
 const RegisterPage = () => {
     const [fullName, setFullName] = useState('');
@@ -21,11 +22,11 @@ const RegisterPage = () => {
         try {
             // 2. THE FIX: Replace the hardcoded axios.post with our API service function
             await registerUser({ fullName, email, password });
-            
+
             toast.success('Registration Successful! Please log in.');
-            
+
             // 3. UX IMPROVEMENT: Navigate to the correct admin login page
-            navigate('/admin/login'); 
+            navigate('/admin/login');
         } catch (error) {
             const message = error.response?.data?.message || 'Registration failed.';
             toast.error(message);
@@ -36,6 +37,7 @@ const RegisterPage = () => {
 
     return (
         <div className="auth-container">
+            <SEO title="Admin Registration" description="Register to the dashboard" />
             <div className="auth-card">
                 <h1>Register Admin</h1>
                 <form onSubmit={submitHandler}>

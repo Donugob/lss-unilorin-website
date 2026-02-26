@@ -4,6 +4,7 @@ import DocumentSpotlight from "../components/DocumentSpotlight"; // 1. Import th
 import { FiShield } from "react-icons/fi";
 import "./AboutPage.css";
 import facultyImage from "../assets/faculty-image.jpg"; // We'll add a placeholder image
+import SEO from '../components/SEO';
 
 const AboutPage = () => {
   useEffect(() => {
@@ -14,6 +15,10 @@ const AboutPage = () => {
 
   return (
     <div className="about-page-wrapper">
+      <SEO
+        title="About Us"
+        description="Learn about the mission, legacy, and people behind the Law Students' Society, University of Ilorin."
+      />
       {/* --- ACT I: THE PHILOSOPHY (The Motto, Reimagined) --- */}
       <section className="about-hero-motto">
         <div className="container">

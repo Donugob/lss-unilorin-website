@@ -4,6 +4,7 @@ import { getAllEvents } from '../services/api'; // We need this in api.js
 import { toast } from 'react-toastify';
 // Reuse NewsPage.css for similar card styles
 import './NewsPage.css';
+import SEO from '../components/SEO';
 
 const EventsPage = () => {
     const [events, setEvents] = useState([]);
@@ -27,6 +28,10 @@ const EventsPage = () => {
 
     return (
         <div className="container page-container">
+            <SEO
+                title="Events"
+                description="Discover upcoming and past events hosted by the Law Students' Society, University of Ilorin."
+            />
             <h1 className="page-title">Upcoming & Past Events</h1>
             <div className="post-grid">
                 {events.map(event => (

@@ -4,9 +4,10 @@ import { motion } from 'framer-motion';
 import { sendContactMessage } from '../services/api';
 
 // 1. Import the specific icons we need from react-icons/fi
-import { FiMail, FiPhone, FiTwitter, FiLinkedin } from 'react-icons/fi'; 
+import { FiMail, FiPhone, FiTwitter, FiLinkedin } from 'react-icons/fi';
 
 import './ContactPage.css';
+import SEO from '../components/SEO';
 
 const ContactPage = () => {
     useEffect(() => {
@@ -42,7 +43,11 @@ const ContactPage = () => {
 
     return (
         <div className="contact-page-wrapper">
-            <motion.div 
+            <SEO
+                title="Contact Us"
+                description="Get in touch with the Law Students' Society, University of Ilorin."
+            />
+            <motion.div
                 className="contact-card"
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}

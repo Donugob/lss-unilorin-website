@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { getPublishedPosts } from '../services/api';
 import { toast } from 'react-toastify';
 import './NewsPage.css'; // We'll create this
+import SEO from '../components/SEO';
 
 const NewsPage = () => {
     const [posts, setPosts] = useState([]);
@@ -22,10 +23,14 @@ const NewsPage = () => {
         fetchPosts();
     }, []);
 
-    if (loading) return <div className="container" style={{padding: '4rem 0'}}><h1>Loading articles...</h1></div>;
+    if (loading) return <div className="container" style={{ padding: '4rem 0' }}><h1>Loading articles...</h1></div>;
 
     return (
         <div className="container page-container">
+            <SEO
+                title="News & Publications"
+                description="Read the latest news, articles, and publications from the Law Students' Society, University of Ilorin."
+            />
             <h1 className="page-title">News & Publications</h1>
             {posts.length === 0 ? (
                 <p>No articles have been published yet. Please check back soon.</p>

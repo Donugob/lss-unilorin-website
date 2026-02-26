@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 import { createSubmission, uploadSubmissionImage } from "../services/api";
 import { Editor } from "@tinymce/tinymce-react";
 import "./AuthPage.css";
+import SEO from '../components/SEO';
 
 const ArticleSubmissionPage = () => {
   const [authorName, setAuthorName] = useState("");
@@ -60,6 +61,10 @@ const ArticleSubmissionPage = () => {
 
   return (
     <div className="container page-container" style={{ padding: "4rem 0" }}>
+      <SEO
+        title="Submit an Article"
+        description="Submit your articles to be featured on the Law Students' Society platform."
+      />
       <div className="auth-card" style={{ maxWidth: "900px" }}>
         <h1 className="auth-title">Submit an Article</h1>
         <form onSubmit={submitHandler}>

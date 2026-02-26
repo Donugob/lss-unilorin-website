@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { toast } from 'react-toastify';
 import './AuthPage.css';
+import SEO from '../components/SEO';
 
 const LoginPage = () => {
     const [email, setEmail] = useState('');
@@ -29,6 +30,7 @@ const LoginPage = () => {
 
     return (
         <div className="auth-container">
+            <SEO title="Admin Login" description="Login to the dashboard" />
             <div className="auth-card">
                 <h1 className="auth-title">Admin Login</h1>
                 <form onSubmit={submitHandler}>

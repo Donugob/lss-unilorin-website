@@ -3,6 +3,7 @@ import { getPublicMaterials } from '../services/api';
 import { toast } from 'react-toastify';
 import { FiFileText, FiImage, FiDownload, FiXCircle, FiLoader } from 'react-icons/fi';
 import './MaterialsPage.css'; // We will create this next
+import SEO from '../components/SEO';
 
 // A reusable card component for displaying a single material
 const MaterialCard = ({ material }) => {
@@ -34,7 +35,7 @@ const MaterialCard = ({ material }) => {
 const MaterialsPage = () => {
     const [materials, setMaterials] = useState([]);
     const [loading, setLoading] = useState(true);
-    
+
     // State to manage the user's filter selections
     const [levelFilter, setLevelFilter] = useState('all');
     const [typeFilter, setTypeFilter] = useState('all');
@@ -68,6 +69,10 @@ const MaterialsPage = () => {
 
     return (
         <div className="materials-page-wrapper">
+            <SEO
+                title="Academic Materials"
+                description="Find lecture notes, past questions, and other essential academic materials organized by level and type."
+            />
             <div className="container">
                 <header className="materials-header">
                     <h1 className="page-title">Resource Hub</h1>
@@ -96,7 +101,7 @@ const MaterialsPage = () => {
                             <option value="Handout">Handouts</option>
                         </select>
                     </div>
-                     <button onClick={clearFilters} className="clear-filters-btn"><FiXCircle /> Clear</button>
+                    <button onClick={clearFilters} className="clear-filters-btn"><FiXCircle /> Clear</button>
                 </div>
 
                 {/* --- Results Grid --- */}

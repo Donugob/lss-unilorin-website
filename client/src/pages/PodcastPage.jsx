@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import UpcomingEpisode from '../components/UpcomingEpisode';
 import ArchivedEpisodes from '../components/ArchivedEpisodes';
 import './PodcastPage.css';
+import SEO from '../components/SEO';
 
 const PodcastPage = () => {
     const [upcoming, setUpcoming] = useState(null);
@@ -29,10 +30,14 @@ const PodcastPage = () => {
         fetchEpisodes();
     }, []);
 
-    if (loading) return <div className="container page-container" style={{textAlign: 'center'}}><h1>Loading Law & Vibes Hub...</h1></div>;
+    if (loading) return <div className="container page-container" style={{ textAlign: 'center' }}><h1>Loading Law & Vibes Hub...</h1></div>;
 
     return (
         <div className="podcast-page">
+            <SEO
+                title="Law & Vibes Podcast"
+                description="Listen to the latest episodes of the Law & Vibes podcast brought to you by the Law Students' Society."
+            />
             {upcoming && <UpcomingEpisode episode={upcoming} />}
             <ArchivedEpisodes episodes={archived} hasUpcoming={!!upcoming} />
         </div>

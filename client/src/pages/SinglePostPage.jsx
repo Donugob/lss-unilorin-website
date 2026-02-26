@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { getPostBySlug } from '../services/api';
 import { toast } from 'react-toastify';
 import './SinglePostPage.css'; // We will replace the CSS
+import SEO from '../components/SEO';
 
 const SinglePostPage = () => {
     const { slug } = useParams();
@@ -27,8 +28,16 @@ const SinglePostPage = () => {
     if (loading) return <div className="page-loader"><h1>Loading Article...</h1></div>;
     if (!post) return <div className="container page-container"><h1>Post Not Found.</h1><Link to="/news">Back to News</Link></div>;
 
+    const plainTextExcerpt = post.contentBody ? post.contentBody.replace(/<[^>]+>/g, '').substring(0, 160) + '...' : "";
+
     return (
         <article className="single-post-page">
+            <SEO
+                title={post.title}
+                description={plainTextExcerpt}
+                type="article"
+                image={post.coverImageUrl}
+            />
             {/* 1. Full-bleed header with background image */}
             <header className="post-header-full-bleed" style={{ backgroundImage: `url(${post.coverImageUrl})` }}>
                 <div className="container">
@@ -43,8 +52,8 @@ const SinglePostPage = () => {
 
             {/* 2. Constrained width for comfortable reading */}
             <div className="post-content-body">
-                <div 
-                    dangerouslySetInnerHTML={{ __html: post.contentBody }} 
+                <div
+                    dangerouslySetInnerHTML={{ __html: post.contentBody }}
                 />
             </div>
         </article>
