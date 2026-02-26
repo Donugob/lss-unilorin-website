@@ -1,6 +1,28 @@
 {
   "rewrites": [
     {
+      "source": "/news/(.*)",
+      "has": [
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": "(?i).*(bot|whatsapp|facebook|twitter|linkedin|slack|discord|telegram).*"
+        }
+      ],
+      "destination": "/api/og"
+    },
+    {
+      "source": "/events/(.*)",
+      "has": [
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": "(?i).*(bot|whatsapp|facebook|twitter|linkedin|slack|discord|telegram).*"
+        }
+      ],
+      "destination": "/api/og"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
